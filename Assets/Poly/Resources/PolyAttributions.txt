@@ -1,0 +1,19 @@
+This project uses the following items from Poly (http://poly.google.com):
+
+Title: HTC Vive Headset
+Author: Jarlan Perez
+URL: https://poly.google.com/view/bFZbl-mmCeD
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
+Title: Phone
+Author: Alex “SAFFY” Safayan
+URL: https://poly.google.com/view/1L9oJAw6nY2
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
+Title: Pug
+Author: Workshop apelab
+URL: https://poly.google.com/view/f1YBNg2R0nj
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode

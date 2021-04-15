@@ -16,7 +16,7 @@ public class ControlParticles : MonoBehaviour
     {
         if (Input.GetKeyUp("down"))
         {
-            particles.GetComponent<ParticleSystem>().enableEmission = true;
+            particles.GetComponent<ParticleSystem>().enableEmission = !particles.GetComponent<ParticleSystem>().enableEmission;
         }
     }
 }
