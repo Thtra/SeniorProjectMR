@@ -26,7 +26,7 @@ public class GestureDetector : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(DelayRoutine(2.5f, Initialize));
+        StartCoroutine(DelayRoutine(3.0f, Initialize));
     }
 
     public IEnumerator DelayRoutine(float delay, Action actionToDo)

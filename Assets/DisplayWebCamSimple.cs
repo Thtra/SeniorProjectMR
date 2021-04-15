@@ -43,13 +43,13 @@ public class DisplayWebCamSimple : MonoBehaviour
             {
                 cam.transform.position = ctrl.transform.position;
                 state = 1;
-                crosshair.active = true;
+                crosshair.SetActive(true);
             }
             else if (state==1)
             {
                 cam.transform.LookAt(ctrl.transform.position);
                 state = 0;
-                crosshair.active = false;
+                crosshair.SetActive(false);
             }
         }
 
