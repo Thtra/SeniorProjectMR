@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using System;
-
 [System.Serializable]
 public struct Gesture
 {
@@ -18,27 +17,22 @@ public class GestureDetector : MonoBehaviour
     public OVRSkeleton skeleton;
     public List<Gesture> gestures;
     private List<OVRBone> fingerbones = null;
-    private bool hasStarted = false;
-    private bool hasRecognize = false;
+    private bool Started = false;
+    private bool hasRecognized = false;
     private bool done = false;
-
-    public UnityEvent notRecognize;
+    public UnityEvent notRecognized;
 
     void Start()
     {
-        StartCoroutine(DelayRoutine(3.0f, Initialize));
+        StartCoroutine(DelayRoutine(3.0f, Start));
+        SetSkeleton();
+        Started = true;
     }
 
-    public IEnumerator DelayRoutine(float delay, Action actionToDo)
+    public IEnumerator DelayRoutine(float delay, Action Starto)
     {
         yield return new WaitForSeconds(delay);
-        actionToDo.Invoke();
-    }
-
-    public void Initialize()
-    {
-        SetSkeleton();
-        hasStarted = true;
+        Starto.Invoke();
     }
     public void SetSkeleton()
     {
@@ -52,14 +46,14 @@ public class GestureDetector : MonoBehaviour
             Save();
         }
 
-        if (hasStarted.Equals(true))
+        if (Started.Equals(true) && OVRPlugin.GetHandTrackingEnabled())
         {
             Gesture currentGesture = Recognize();
-            hasRecognize = !currentGesture.Equals(new Gesture());
-            if (hasRecognize)
+            hasRecognized = !currentGesture.Equals(new Gesture());
+                if (hasRecognized)
             {
                 done = true;
-                Debug.Log("New Gesture Found : " + currentGesture.GestureName);
+                Debug.Log("Gesture: " + currentGesture.GestureName);
                 currentGesture.onRecognized?.Invoke();
             }
             else
@@ -67,7 +61,7 @@ public class GestureDetector : MonoBehaviour
                 if (done)
                 {
                     done = false;
-                    notRecognize?.Invoke();
+                    notRecognized?.Invoke();
                 }
             }
         }
@@ -76,7 +70,6 @@ public class GestureDetector : MonoBehaviour
     void Save()
     {
         Gesture g = new Gesture();
-        g.GestureName = "New Gesture";
         List<Vector3> data = new List<Vector3>();
         foreach (var bone in fingerbones)
         {
@@ -105,7 +98,6 @@ public class GestureDetector : MonoBehaviour
                 }
                 sumDistance += distance;
             }
-
             if (!isDiscarded && sumDistance < currentMin)
             {
                 currentMin = sumDistance;

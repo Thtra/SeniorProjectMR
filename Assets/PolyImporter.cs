@@ -53,6 +53,5 @@ public class PolyImporter : MonoBehaviour
         result.Value.gameObject.AddComponent<ManipulatedObject>();
         result.Value.gameObject.AddComponent<Rigidbody>().useGravity = false;
         result.Value.gameObject.AddComponent<SphereCollider>();
-        //       result.Value.gameObject.AddComponent<OVRGrabbable>();
     }
 }

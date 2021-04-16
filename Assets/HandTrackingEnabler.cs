@@ -22,14 +22,12 @@ public class HandTrackingEnabler : MonoBehaviour
         {
             ovrHandPrefabLeft.SetActive(true);
             ovrHandPrefabRight.SetActive(true);
-            Debug.Log("I am active!");
             HUD.SetActive(true);
         }
         else
         {
             ovrHandPrefabLeft.SetActive(false);
             ovrHandPrefabRight.SetActive(false);
-            Debug.Log("NOT active!");
             HUD.SetActive(false);
         }
     }
