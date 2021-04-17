@@ -13,13 +13,12 @@ public struct Gesture
 
 public class GestureDetector : MonoBehaviour
 {
-    public float threshold = 0.5f;
+    public float threshold = 0.1f;
     public OVRSkeleton skeleton;
     public List<Gesture> gestures;
     private List<OVRBone> fingerbones = null;
     private bool Started = false;
     private bool hasRecognized = false;
-    private bool done = false;
     public UnityEvent notRecognized;
 
     void Start()
@@ -50,33 +49,27 @@ public class GestureDetector : MonoBehaviour
         {
             Gesture currentGesture = Recognize();
             hasRecognized = !currentGesture.Equals(new Gesture());
-                if (hasRecognized)
+            if (hasRecognized)
             {
-                done = true;
+
                 Debug.Log("Gesture: " + currentGesture.GestureName);
                 currentGesture.onRecognized?.Invoke();
             }
-            else
-            {
-                if (done)
-                {
-                    done = false;
-                    notRecognized?.Invoke();
-                }
-            }
+
         }
     }
 
     void Save()
     {
-        Gesture g = new Gesture();
+        Gesture gest = new Gesture();
+        gest.GestureName = "New Gesture";
         List<Vector3> data = new List<Vector3>();
         foreach (var bone in fingerbones)
         {
             data.Add(skeleton.transform.InverseTransformPoint(bone.Transform.position));
         }
-        g.fingerData = data;
-        gestures.Add(g);
+        gest.fingerData = data;
+        gestures.Add(gest);
     }
 
     Gesture Recognize()
