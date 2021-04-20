@@ -17,7 +17,7 @@ public class ManipulatedObject : MonoBehaviour
         OVRGrabbable grab = gameObject.AddComponent<OVRGrabbable>();
         OVRGrabbable myInstance = PolyImport.GetComponent<OVRGrabbable>();
 
-        myInstance.CustomGrabCollider(word);
+        myInstance.MyGrabCollider(word);
     }
     public GameObject PolyImport
     {
@@ -34,7 +34,7 @@ public class ManipulatedObject : MonoBehaviour
         Vector3 positionvaluesright = Tracking_Capture.positionvaluesright;
         Quaternion rotationvaluesright = Tracking_Capture.rotationvaluesright;
 
-        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger) == true)
+        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger) == true || OVRInput.Get(OVRInput.RawButton.LIndexTrigger) == true)
         {
             PolyImport.transform.position = positionvaluesright;
             PolyImport.transform.rotation = rotationvaluesright;

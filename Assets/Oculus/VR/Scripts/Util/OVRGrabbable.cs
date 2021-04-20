@@ -144,7 +144,7 @@ public class OVRGrabbable : MonoBehaviour
         }
     }
     */
-    virtual public void CustomGrabCollider(Collider collider)
+    virtual public void MyGrabCollider(Collider collider)
     {
         m_grabPoints = new Collider[1] { collider };
     }
